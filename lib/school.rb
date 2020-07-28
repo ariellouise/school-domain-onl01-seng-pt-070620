@@ -1,17 +1,25 @@
 class School
-  
+  attr_accessor :grade, :roster
+  attr_reader :name
   def initialize(name)
-    @name = name 
-  end 
-  
-  Roster = []
-  
-  def name
-    @name 
-  end 
-  
-end 
+    @name = name
+    @roster = {}
+  end
 
-school= 
-School.new("Bayside High School")
-school.roster
+  def add_student(name, grade)
+    roster[grade] ||= []
+    roster[grade] << name
+
+  end
+
+  def grade(student_grade)
+    roster[student_grade]
+  end
+  def sort
+    sorted = {}
+    roster.each do |grade, students|
+      sorted[grade] = students.sort
+    end
+    sorted
+  end
+end
